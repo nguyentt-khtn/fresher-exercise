@@ -9,7 +9,7 @@ export default function Register() {
       password: "",
     },
     onSubmit: (values) => {
-      console.log({values})
+      console.log({ values })
     },
     validationSchema: Yup.object().shape({
       password: Yup.string()

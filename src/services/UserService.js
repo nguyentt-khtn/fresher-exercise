@@ -2,11 +2,14 @@ import { baseService } from "./baseService";
 
 
 export class UserService extends baseService {
-    contructor(){
-        super()
+    
+
+    
+    loginUser = (user) => {
+        return this.post(`api/login`, user)
     }
-    registerUser = (user) => {
-        return this.post(`api/register`, user)
+    getUserList = () => {
+        return this.get(`api/users?page=2`)
     }
 }
 
