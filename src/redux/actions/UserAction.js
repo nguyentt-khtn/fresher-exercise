@@ -19,15 +19,27 @@ export const loginUserAction = (user) => {
         }
     }
 }
-export const getUserListAction = () => {
+export const getUserListAction = (page) => {
     return async dispacth => {
         try {
-            const result = await userService.getUserList()
+            const result = await userService.getUserList(page)
             if(result.status === STATUS.SUCCESS){
                 dispacth({
                     type:GET_USER_LIST,
                     userList: result.data
                 })
+            }
+        } catch (error) {
+            console.log({error})
+        }
+    }
+}
+export const createNewUserAction = (user) => {
+    return async dispacth => {
+        try {
+            const result = await userService.createUser(user)
+            if(result.status === STATUS.SUCCESS){
+                dispacth(getUserListAction(1))
             }
         } catch (error) {
             console.log({error})

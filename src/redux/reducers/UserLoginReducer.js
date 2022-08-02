@@ -10,7 +10,8 @@ const initialState = {
             last_name: "Lawson",
             avatar: "https://reqres.in/img/faces/7-image.jpg",
         }
-    ]
+    ],
+    pagination: {}
 
 }
 
@@ -21,7 +22,9 @@ export const UserLoginReducer = (state = initialState, action) => {
             localStorage.setItem(TOKEN, action.loginUser.token)
             return { ...state }
         case GET_USER_LIST: {
-            state.userList = action.userList.data
+            const {data, ...rest} = action.userList
+            state.userList = data
+            state.pagination = rest
             return {...state}
         }
         default:
